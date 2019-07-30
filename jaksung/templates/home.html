@@ -1,0 +1,50 @@
+<div style="text-align:center">
+    <h1>동방 방명록</h1><br>
+
+    <h2>방명록 작성하기</h2>
+    <form action="{% url 'submit' %}">
+        메시지: <textarea cols="50" rows="1" name="a"></textarea><br>
+        작성자: <textarea cols="50" rows="1" name="b"></textarea><br>
+        날짜: <input type="date" name="c">
+        <input type="submit" value="등록"><br><br><br>
+    </form>
+
+
+    <h2>댓글 작성하기</h2>
+    <form action="{% url 'reple' %}" method="POST"> {% csrf_token %}
+        댓글: <textarea cols="50" rows="1" name="f"></textarea><br>
+        작성자: <textarea cols="50" rows="1" name="g"></textarea><br>
+        날짜: <input type="date" name="h">
+        <input type="submit" value="댓글달기"><br><br><br>
+    </form>
+
+    <table border="1" style="margin-left: auto; margin-right: auto;" name="table1">
+        <tr>
+            <th>메시지</th>
+            <th>작성자</th>
+            <th>날짜</th>
+        </tr>
+
+            {% for d in dongs.all %}
+            <tr>
+                <td> {{d.message}} </td>
+                <td> {{d.writer}} </td>
+                <td> {{d.date}} </td>
+            </tr>
+            {% endfor %}
+
+            {% for e in bangs.all %}
+            <tr>
+                <td> ┗> {{e.message}} </td>
+                <td> {{e.writer}} </td>
+                <td> {{e.date}} </td>
+            </tr>        
+            {% endfor %}
+        
+
+    </table>
+    <br>
+
+
+    <br><br>
+</div>
