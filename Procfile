@@ -1,0 +1,1 @@
+web: gunicorn loak.wsgi --log-file -
